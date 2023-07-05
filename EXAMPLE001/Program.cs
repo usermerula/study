@@ -1,13 +1,15 @@
-﻿Console.Write("Введите имя пользователя");
-string username = Console.ReadLine();
+﻿Console.WriteLine("Введите первое число");
+int a = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите второе число");
+int b = Convert.ToInt32(Console.ReadLine());
 
-if(username == "Маша")
+if (a > b)
 {
-    Console.WriteLine("Ура, это же МАША!");
+    Console.Write("Ответ:");
+    Console.WriteLine(a);
 }
-
 else
 {
-    Console.Write("Привет, ")
-    Console.WriteLine(username);
+    Console.Write("Ответ:");
+    Console.WriteLine(b);
 }
