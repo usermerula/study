@@ -1,11 +1,7 @@
-﻿Console.WriteLine("Введите  число");
-int nmbr = Convert.ToInt32(Console.ReadLine());
+﻿int[] randomArray = new int[8];
 
-if (nmbr % 2 == 0)
+for (int i = 0; i < 8; i++)
 {
-    Console.WriteLine("Число является четным!");
-}
-else
-{
-    Console.WriteLine("Число является нечетным!");
+randomArray[i] = new Random().Next(1,99);
+Console.Write(randomArray[i] + " " );
 }
