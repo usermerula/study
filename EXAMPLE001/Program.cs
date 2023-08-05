@@ -1,16 +1,25 @@
-﻿Console.Write("Введите число A: ");
-int a = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите число B: ");
-int b = Convert.ToInt32(Console.ReadLine());
-int c = 1;
-if (b < 1)
-    Console.Write("Число B должно быть натуральным\n");
-else
+﻿Console.Write("Введите размер m массива: ");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите размерность n массива: ");
+int n = Convert.ToInt32(Console.ReadLine());
+
+double[,] randomArray = new double[m, n];
+
+void mas(int m, int n)
 {
-    while (b != 0)
+    int i, j;
+    Random rand = new Random();
+    for (i = 0; i < m; i++)
     {
-        c = c * a;
-        b --;
-    }
-    Console.Write($"Число A в степени B равно { c}");
+        Console.WriteLine();
+        for (j = 0; j < n; j++)
+        {
+            randomArray[i, j] = rand.NextDouble();
+            Console.Write($"{ randomArray[i, j]:F2} ");
 }
+
+}
+
+}
+
+mas(m, n);
