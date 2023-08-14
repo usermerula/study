@@ -1,61 +1,63 @@
-﻿Console.Write(«Введите размерность m массива: «);
-int m = Convert.ToInt32(Console.ReadLine());
-Console.Write(«Введите размерность n массива: «);
-int n = Convert.ToInt32(Console.ReadLine());
-int[,] randomArray = new int[m, n];
+﻿Console.WriteLine("Введите размер массива m x n и диапазон случайных значений:");
+int m = InputNumbers("Введите m: ");
+int n = InputNumbers("Введите n: ");
+int range = InputNumbers("Введите диапазон: от 1 до ");
 
-void mas(int m, int n)
+int[,] array = new int[m, n];
+CreateArray(array);
+WriteArray(array);
+
+int minSumLine = 0;
+int sumLine = SumLineElements(array, 0);
+for (int i = 1; i < array.GetLength(0); i++)
 {
-    int i, j;
-    Random rand = new Random();
-    for (i = 0; i < m; i++)
+    int tempSumLine = SumLineElements(array, i);
+    if (sumLine > tempSumLine)
     {
-        for (j = 0; j < n; j++)
-        {
-            randomArray[i, j] = rand.Next(1, 9);
-        }
+        sumLine = tempSumLine;
+        minSumLine = i;
     }
 }
 
-void printm(int[,] array)
+Console.WriteLine($"\n{minSumLine + 1} - строкa с наименьшей суммой ({sumLine}) элементов ");
+
+
+int SumLineElements(int[,] array, int i)
 {
-    int i, j;
-    for (i = 0; i < array.GetLength(0); i++)
+    int sumLine = array[i, 0];
+    for (int j = 1; j < array.GetLength(1); j++)
     {
-        Console.WriteLine();
-        for (j = 0; j < array.GetLength(1); j++)
-        {
-            Console.Write($»{ array[i, j]} «);
-}
-Console.WriteLine();
+        sumLine += array[i, j];
+    }
+    return sumLine;
 }
 
+int InputNumbers(string input)
+{
+    Console.Write(input);
+    int output = Convert.ToInt32(Console.ReadLine());
+    return output;
 }
 
-mas(m, n);
-Console.WriteLine(«\nИсходный массив: «);
-printm(randomArray);
-
-
-void uporyadok(int[,] array)
+void CreateArray(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            for (int k = 0; k < array.GetLength(1) — 1; k++)
-{
-    if (array[i, k] < array[i, k + 1])
-    {
-        int temp = array[i, k + 1];
-        array[i, k + 1] = array[i, k];
-        array[i, k] = temp;
+            array[i, j] = new Random().Next(range);
+        }
     }
 }
-}
-}
-}
 
-uporyadok(randomArray);
-Console.WriteLine(«\nОтсортированный массив: «);
-printm(randomArray);
+void WriteArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
