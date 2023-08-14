@@ -1,25 +1,29 @@
-﻿Console.Write("Введите размер m массива: ");
+﻿Console.Write("Введите количество элементов массива: ");
 int m = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите размерность n массива: ");
-int n = Convert.ToInt32(Console.ReadLine());
+int[] Array = new int[m];
 
-double[,] randomArray = new double[m, n];
-
-void mas(int m, int n)
+void mas(int m)
 {
-    int i, j;
-    Random rand = new Random();
-    for (i = 0; i < m; i++)
-    {
-        Console.WriteLine();
-        for (j = 0; j < n; j++)
-        {
-            randomArray[i, j] = rand.NextDouble();
-            Console.Write($"{ randomArray[i, j]:F2} ");
+for (int i = 0; i < m; i++)
+{
+Console.WriteLine($"Введите {i+1} элемент массива ");
+Array[i] = Convert.ToInt32(Console.ReadLine());
 }
 
 }
 
+int kol(int[] Array)
+{
+int i=0;
+int sum = 0;
+while (i < Array.Length)
+{
+if(Array[i]>0)
+sum = sum + 1;
+i = i + 1;
+}
+return sum;
 }
 
-mas(m, n);
+mas(m);
+Console.Write($"\n Чисел больше нуля: {kol(Array)}");
