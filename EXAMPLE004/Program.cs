@@ -1,27 +1,37 @@
-﻿Console.Write("Введите количество элементов массива: ");
-int a = Convert.ToInt32(Console.ReadLine());
-int[] randomArray = new int[a];
+﻿int[,,] array3D = new int[2, 2, 2];
+FillArray(array3D);
+PrintIndex(array3D);
 
-void mas(int a)
+
+// Функция вывода индекса элементов 3D массива
+void PrintIndex(int[,,] arr)
 {
-for (int i = 0; i < a; i++)
-{
-randomArray[i] = new Random().Next(99,999);
-Console.Write(randomArray[i] + " " );
+    for (int i = 0; i < array3D.GetLength(0); i++)
+    {
+        for (int j = 0; j < array3D.GetLength(1); j++)
+        {
+            Console.WriteLine();
+            for (int k = 0; k < array3D.GetLength(2); k++)
+            {
+                Console.Write($"{array3D[i, j, k]}({i},{j},{k}) ");
+            }
+        }
+    }
 }
 
-}
-
-int kol(int[] randomArray)
+// Функция заполнения 3D массива не повторяющимеся числами
+void FillArray(int[,,] arr)
 {
-int kol = 0;
-for (int i = 0; i < randomArray.Length; i++)
-{
-if (randomArray[i] % 2 == 0)
-kol = kol + 1;
+    int count = 10;
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            for (int k = 0; k < arr.GetLength(2); k++)
+            {
+                arr[k, i, j] += count;
+                count += 3;
+            }
+        }
+    }
 }
-return kol;
-}
-
-mas(a);
-Console.Write($"\nКоличество чётных чисел в массиве: {kol(randomArray)}");
