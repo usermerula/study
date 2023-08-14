@@ -1,29 +1,52 @@
-﻿Console.Write("Введите количество элементов массива: ");
-int m = Convert.ToInt32(Console.ReadLine());
-int[] Array = new int[m];
+﻿int[,] table = new int[3, 4];
+FillArrayRandom(table);
+PrintArray(table);
+SortToLower(table);
+Console.WriteLine();
+PrintArray(table);
 
-void mas(int m)
+
+
+void FillArrayRandom(int[,] array)
 {
-for (int i = 0; i < m; i++)
-{
-Console.WriteLine($"Введите {i+1} элемент массива ");
-Array[i] = Convert.ToInt32(Console.ReadLine());
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(1, 10);
+        }
+    }
 }
 
+
+void SortToLower(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            for (int k = 0; k < array.GetLength(1) - 1; k++)
+            {
+                if (array[i, k] < array[i, k + 1])
+                {
+                    int temp = array[i, k + 1];
+                    array[i, k + 1] = array[i, k];
+                    array[i, k] = temp;
+                }
+            }
+        }
+    }
 }
 
-int kol(int[] Array)
-{
-int i=0;
-int sum = 0;
-while (i < Array.Length)
-{
-if(Array[i]>0)
-sum = sum + 1;
-i = i + 1;
-}
-return sum;
-}
 
-mas(m);
-Console.Write($"\n Чисел больше нуля: {kol(Array)}");
+void PrintArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write($"{array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+}
