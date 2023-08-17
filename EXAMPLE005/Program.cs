@@ -1,40 +1,20 @@
-﻿int n = 4;
-int[,] sqareMatrix = new int[n, n];
+﻿int n = InputNumbers("Введите N: ");
+int count = 2;
+PrintNumber(n, count);
+Console.Write(1);
 
-int temp = 1;
-int i = 0;
-int j = 0;
-
-while (temp <= sqareMatrix.GetLength(0) * sqareMatrix.GetLength(1))
+void PrintNumber(int n, int count)
 {
-  sqareMatrix[i, j] = temp;
-  temp++;
-  if (i <= j + 1 && i + j < sqareMatrix.GetLength(1) - 1)
-    j++;
-  else if (i < j && i + j >= sqareMatrix.GetLength(0) - 1)
-    i++;
-  else if (i >= j && i + j > sqareMatrix.GetLength(1) - 1)
-    j--;
-  else
-    i--;
+ if (count > n) return;
+ PrintNumber(n, count + 1);
+ Console.Write(count + ", ");
 }
 
-WriteArray(sqareMatrix);
-
-void WriteArray (int[,] array)
+int InputNumbers(string input)
 {
-  for (int i = 0; i < array.GetLength(0); i++)
-  {
-    for (int j = 0; j < array.GetLength(1); j++)
-    {
-      if (array[i,j] / 10 <= 0)
-      Console.Write($" {array[i,j]} ");
-
-      else Console.Write($"{array[i,j]} ");
-    }
-    Console.WriteLine();
-  }
+ Console.Write(input);
+ int output = Convert.ToInt32(Console.ReadLine());
+ return output;
 }
-  
 
   
